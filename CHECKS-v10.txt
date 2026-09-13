@@ -1,0 +1,28 @@
+Aichi–Nagoya v18 — automated regression checks, 2026-09-13
+
+PASS 61 fixed coordinates; 24 stays / 36 venues / 1 headquarters; all Google/Apple/via links use identical coordinates; both user points exact.
+PASS No runtime geocoding, stale coordinate-cache reads or duplicate function declarations.
+PASS All 61 places open offline without network requests; stay sports are indexed; show-all restores the full map after a single-place view.
+PASS Language switches, legacy preferences and venue-to-hotel selections restore correctly; all 38 route records retained.
+PASS Both road providers failing leaves exact endpoints visible and reports a road error.
+PASS Valid road response renders route without modifying venue markers.
+PASS Changing selection cancels an in-flight route; stale responses do not replace the selected place.
+PASS Malformed routes and aborts rejected; road-access offset measured separately from fixed coordinates.
+PASS Service worker precache includes every required asset; older app shells removed, unrelated caches retained.
+
+Data scope: 61 locations (24 stays + 36 venues + 1 headquarters); four Aichi venues and five Gifu locations were added. Tokyo and Shizuoka entries remain excluded by request.
+Browser smoke check: see release note below.
+Geographic source review and remaining uncertainty: coordinate-audit.html.
+These checks validate code consistency, not ground-truth positional accuracy.
+
+PASS v12 UI: sports list is shown below the map; selecting a sport focuses its stay/venue route and shows distance/time below the map.
+PASS v12 markers: competition venues use sport emoji; OU and OCA HQ use labelled black markers.
+PASS v12 detours: candidates are shown on the map when within 3 km of route or 5 km of destination.
+PASS v12 map: OU and OCA HQ markers use a higher z-index than all other markers; venue emoji are centered on a light-gray pin.
+PASS v12 location: permission-gated watchPosition keeps a Japan-only user marker visible and hides it outside Japan.
+PASS v12 satellite: map mode switch rebuilds the style with the Esri imagery layer and preserves markers/routes.
+PASS v12 UI: the detour button is placed directly below route distance/time; mobile layout keeps the map controls and bottom navigation within the viewport.
+PASS v12 location: the user marker is a centered purple circle with a white border.
+PASS v18 route search/location/language: both first-page route fields show all 61 objects when empty, filter Russian/English names, use a live Japan-only user point as a route origin, route every place through the map action, and expose Uzbek Cyrillic/Latin UI.
+PASS v18 location route: the enable button is above “Show all objects”; a granted Japan position becomes a live route origin and keeps the purple marker updated.
+PASS v18 route fallback: venue and accommodation route actions use fixed coordinates directly and accept large campus/port road approaches while retaining the exact marker.
